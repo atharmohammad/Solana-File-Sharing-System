@@ -24,5 +24,5 @@ pub struct Initialize<'info> {
 
 #[account]
 pub struct Files{
-    pub docs : [u8;1024] //just for testing , will change later
+    pub docs : [u8;1] //just for testing , will change later
 }

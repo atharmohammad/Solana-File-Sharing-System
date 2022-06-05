@@ -32,9 +32,14 @@ const FileUploadPage = () => {
     };
 
     return(
-        <div>
+        <div className="FileUpload">
             <form method="POST" encType="multipart/form-data">
-                <input type="file" name="file" onChange={changeHandler}/>
+                
+                <label for="file" className="uploadLabel">
+                    <input type="file" id="file" name="file" onChange={changeHandler} className="uploadButton"/>    
+                    Choose a file
+
+                </label>
                 {isFilePicked ? (
                     <div>
                         <p>Filename: {selectedFile.name}</p>
@@ -42,11 +47,11 @@ const FileUploadPage = () => {
                         <p>Size in bytes: {selectedFile.size}</p>
                     </div>
                 ) : (
-                    <p>Select file to view details</p>
+                    <p>Select file to upload and click submit</p>
                 )}
             </form>
             
-            <div>
+            <div className="submit">
                 <button onClick={handleSubmission}>Submit</button>
             </div>
         </div>

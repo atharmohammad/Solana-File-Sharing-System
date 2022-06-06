@@ -1,7 +1,7 @@
 [features]
 seeds = false
 [programs.localnet]
-solana_file_sharing_system = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+solana_file_sharing_system = "2sVP5kvLJbSvbNk6abeQjq4VDvd1p3AtMbJvuXVWNsR4"
 
 [registry]
 url = "https://anchor.projectserum.com"

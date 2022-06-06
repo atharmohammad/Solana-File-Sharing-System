@@ -1,36 +1,36 @@
 import React, {ChangeEvent, useState} from "react";
+import { create } from 'ipfs-http-client'
+const str:any = new URL('https://ipfs.infura.io:5001/api/v0');
+const client = create(str)
 interface HTMLInputEvent extends Event {
     target: HTMLInputElement & EventTarget;
 }
-const FileUploadPage : React.FC = () => {
+interface IProps {
+    share:any
+}
+const FileUploadPage : React.FC<IProps> = ({share}) => {
     const [selectedFile, setSelectedFile] = useState<any | null>(null);
     const [isFilePicked, setIsFilePicked] = useState(false);
+    const [fileHash, updateFileUrl] = useState(``)
 
-    const changeHandler = (event?:HTMLInputEvent) => {
-        const files = event?.target.files as FileList;
-        console.log(files[0]);
+
+    const changeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
+        const files = event?.currentTarget.files as FileList;
         setSelectedFile(files[0]);
         setIsFilePicked(true);
     };
 
-    const handleSubmission = () => {
-        const formData = new FormData();
-        formData.append('File', selectedFile);
-        const uploadUrl = '';
-        fetch(
-            uploadUrl,
-            {
-                method: 'POST',
-                body: formData,
-            }
-        )
-            .then((response) => response.json())
-            .then((result) => {
-                console.log('Success:', result);
-            })
-            .catch((error) => {
-                console.log('Error:', error);
-            })
+    const handleSubmission = async() => {
+        try {
+            // const added = await client.add(selectedFile)
+            // const url = `https://ipfs.infura.io/ipfs/${added.path}`
+            // updateFileUrl(added.path)
+            // console.log(url)
+            // console.log(added.path)
+            share("test")
+        } catch (error) {
+            console.log('Error uploading file: ', error)
+        }  
 
     };
 
@@ -40,7 +40,7 @@ const FileUploadPage : React.FC = () => {
                 
                 <label htmlFor="file" className="uploadLabel">
                     <input type="file" id="file" name="file" 
-                    onChange={(event?:ChangeEvent<HTMLInputElement>)=>changeHandler} className="uploadButton"/>    
+                    onChange={changeHandler} className="uploadButton"/>    
                     Choose a file
 
                 </label>

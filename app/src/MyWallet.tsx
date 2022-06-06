@@ -21,6 +21,7 @@ const opts = {
     preflightCommitment: "processed"
   }
 const programID = new PublicKey(idl.metadata.address);
+console.log(programID)
 
 const MyWallet: React.FC = () => {
     const wallet = useAnchorWallet();
@@ -28,7 +29,7 @@ const MyWallet: React.FC = () => {
     const { connection } = useConnection();
     const baseAccount = Keypair.generate();
     async function getProvider() {
-        const network = "https://explorer-api.devnet.solana.com/";
+        const network = "http://localhost:8899/";
         const connection = new Connection(network, "processed");
 
         const provider = wallet ? new Provider(
@@ -41,23 +42,31 @@ const MyWallet: React.FC = () => {
     }
     const jsonString = JSON.stringify(idl);
     const idlJSON = JSON.parse(jsonString);
-    async function increment() {
+    async function share(hash:String) {
         const provider = await getProvider();
-        if(provider){
-            const program = new Program(idlJSON, programID, provider);
-            // await program.rpc.increment({
-            //     accounts: {
-            //       baseAccount: baseAccount.publicKey
-            //     }
-            //   });
-            //   const account = await program.account.baseAccount.fetch(baseAccount.publicKey);
-            console.log(program);
+        if(provider && wallet){
+            try{
+                const program = new Program(idlJSON, idl.metadata.address, provider);
+                await program.rpc.shareDocuments("title","description",hash,{
+                    accounts: {
+                        files:baseAccount.publicKey,
+                        user:provider.wallet.publicKey,
+                        systemProgram:SystemProgram.programId
+                    },
+                    signers:[baseAccount]
+                  });
+                const account = await program.account.files.fetch(baseAccount.publicKey);
+                console.log("account : ",account);
+            }catch(e){
+                console.log(e);
+            }
+            
         }
       }
 
     return (
         <>
-            <FileUploadPage/>
+            <FileUploadPage share={share}/>
             {wallet?.publicKey &&
                 <p>Your wallet is {walletAddress}</p> ||
                 <p>Hello! Click the button to connect</p>
@@ -71,7 +80,7 @@ const MyWallet: React.FC = () => {
                 </span>
                 {wallet?.publicKey && <WalletDisconnectButton />}
             </div>
-            <button onClick={increment}>click</button>
+            {/* <button onClick={share}>click</button> */}
         </>
     );
 };

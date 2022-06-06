@@ -1,27 +1,48 @@
 {
-    "version": "0.1.0",
-    "name": "solana_file_sharing_system",
-    "instructions": [
-      {
-        "name": "shareDocuments",
-        "accounts": [
-          {
-            "name": "files",
-            "isMut": true,
-            "isSigner": true
-          },
-          {
-            "name": "user",
-            "isMut": true,
-            "isSigner": true
-          },
-          {
-            "name": "systemProgram",
-            "isMut": false,
-            "isSigner": false
-          }
-        ],
-        "args": [
+  "version": "0.1.0",
+  "name": "solana_file_sharing_system",
+  "instructions": [
+    {
+      "name": "shareDocuments",
+      "accounts": [
+        {
+          "name": "files",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "docs",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Files",
+      "type": {
+        "kind": "struct",
+        "fields": [
           {
             "name": "title",
             "type": "string"
@@ -36,30 +57,9 @@
           }
         ]
       }
-    ],
-    "accounts": [
-      {
-        "name": "Files",
-        "type": {
-          "kind": "struct",
-          "fields": [
-            {
-              "name": "title",
-              "type": "string"
-            },
-            {
-              "name": "description",
-              "type": "string"
-            },
-            {
-              "name": "docs",
-              "type": "string"
-            }
-          ]
-        }
-      }
-    ],
-    "metadata": {
-      "address": "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
     }
+  ],
+  "metadata": {
+    "address": "2sVP5kvLJbSvbNk6abeQjq4VDvd1p3AtMbJvuXVWNsR4"
   }
+}

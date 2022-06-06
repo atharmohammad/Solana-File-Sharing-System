@@ -21,6 +21,7 @@ Solana File Sharing System is a Decentralized Application which helps you share 
 
 - <a href="https://reactjs.org/">React</a>
 - <a href="https://docs.solana.com/cli/install-solana-cli-tools">Solana</a>
+- <a href="https://project-serum.github.io/anchor/getting-started/introduction.html">Anchor</a>
 
 ### Installation
 

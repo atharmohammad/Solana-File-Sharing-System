@@ -18,6 +18,7 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.1.8",
+    "@uiw/react-md-editor": "^3.14.1",
     "borsh": "^0.6.0",
     "ipfs-http-client": "^53.0.0",
     "react": "^17.0.2",

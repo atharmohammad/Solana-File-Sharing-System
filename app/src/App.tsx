@@ -45,8 +45,9 @@ function App() {
       <WalletProvider wallets={wallets}>
         <div className="App">
           <header className="App-header">
-            Solana File Sharing System
+            <span className="title">Solana File Sharing System</span>
             <MyWallet />
+
           </header>
         </div>
       </WalletProvider>

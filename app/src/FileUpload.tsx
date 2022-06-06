@@ -12,13 +12,17 @@ const FileUploadPage : React.FC<IProps> = ({share}) => {
     const [selectedFile, setSelectedFile] = useState<any | null>(null);
     const [isFilePicked, setIsFilePicked] = useState(false);
     const [fileHash, updateFileUrl] = useState(``)
-
+    const [title,setTitle]  = useState("");
+    const [value,setValue] = useState("");
 
     const changeHandler = (event:React.ChangeEvent<HTMLInputElement>) => {
         const files = event?.currentTarget.files as FileList;
         setSelectedFile(files[0]);
         setIsFilePicked(true);
     };
+
+    const changeTitle = (event : React.ChangeEvent<HTMLInputElement>) =>setTitle(event.currentTarget.value)
+    const changeDescription = (event : any) =>setValue(event.currentTarget.value)
 
     const handleSubmission = async() => {
         try {
@@ -39,10 +43,8 @@ const FileUploadPage : React.FC<IProps> = ({share}) => {
             <form method="POST" encType="multipart/form-data">
                 
                 <label htmlFor="file" className="uploadLabel">
-                    <input type="file" id="file" name="file" 
-                    onChange={changeHandler} className="uploadButton"/>    
-                    Choose a file
-
+                    <input type="file" id="file" name="file"  
+                    onChange={changeHandler} className="choose-file"/>    
                 </label>
                 {isFilePicked ? (
                     <div>
@@ -54,10 +56,21 @@ const FileUploadPage : React.FC<IProps> = ({share}) => {
                     <p>Select file to upload and click submit</p>
                 )}
             </form>
-            
-            <div className="submit">
-                <button onClick={handleSubmission}>Submit</button>
+
+            <input type="text" className="title-input" 
+            placeholder="Title"
+            onChange={changeTitle} />
+            <div>
+                <textarea
+                    className="text-area"
+                    rows={10}
+                    cols={50}
+                    placeholder="description"
+                    onChange={changeDescription}
+                    style={{ padding: "5px" }}
+                />
             </div>
+            <button className="submit" onClick={handleSubmission}>Submit</button>
         </div>
     )
 };

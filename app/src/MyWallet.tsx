@@ -8,6 +8,7 @@ import {
     WalletModalProvider,
     WalletDisconnectButton,
     WalletMultiButton,
+    WalletConnectButton,
 } from '@solana/wallet-adapter-react-ui';
 import {
     Program, Provider, web3
@@ -15,7 +16,7 @@ import {
 import idl from "./idl.json"
 import { Connection, PublicKey } from '@solana/web3.js';
 import FileUploadPage from './FileUpload';
-
+import './page.css'
 const { SystemProgram, Keypair } = web3;
 const opts = {
     preflightCommitment: "processed"
@@ -66,21 +67,22 @@ const MyWallet: React.FC = () => {
 
     return (
         <>
-            <FileUploadPage share={share}/>
-            {wallet?.publicKey &&
-                <p>Your wallet is {walletAddress}</p> ||
-                <p>Hello! Click the button to connect</p>
-            }
+            <div className='wallet-address'>
+                {wallet?.publicKey &&
+                    <p>Your wallet is {walletAddress}</p> ||
+                    <p>Hello! Click the button to connect</p>
+                }
+            </div>
 
-            <div className="multi-wrapper">
+            <div className="multi-wrapper wallet-button">
                 <span className="button-wrapper">
                     <WalletModalProvider>
-                        <WalletMultiButton />
+                        <WalletMultiButton/>
                     </WalletModalProvider>
                 </span>
                 {wallet?.publicKey && <WalletDisconnectButton />}
             </div>
-            {/* <button onClick={share}>click</button> */}
+            <FileUploadPage share={share}/>
         </>
     );
 };

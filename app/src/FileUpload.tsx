@@ -22,12 +22,12 @@ const FileUploadPage : React.FC<IProps> = ({share}) => {
 
     const handleSubmission = async() => {
         try {
-            // const added = await client.add(selectedFile)
-            // const url = `https://ipfs.infura.io/ipfs/${added.path}`
-            // updateFileUrl(added.path)
-            // console.log(url)
-            // console.log(added.path)
-            share("test")
+            const added = await client.add(selectedFile)
+            const url = `https://ipfs.infura.io/ipfs/${added.path}`
+            updateFileUrl(added.path)
+            console.log(url)
+            console.log(added.path)
+            share(added.path)
         } catch (error) {
             console.log('Error uploading file: ', error)
         }  

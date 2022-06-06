@@ -43,12 +43,12 @@ const MyWallet: React.FC = () => {
     }
     const jsonString = JSON.stringify(idl);
     const idlJSON = JSON.parse(jsonString);
-    async function share(hash:String) {
+    async function share(data:any) {
         const provider = await getProvider();
         if(provider && wallet){
             try{
                 const program = new Program(idlJSON, idl.metadata.address, provider);
-                await program.rpc.shareDocuments("title","description",hash,{
+                await program.rpc.shareDocuments(data.title,data.description,data.hash,{
                     accounts: {
                         files:baseAccount.publicKey,
                         user:provider.wallet.publicKey,
@@ -57,6 +57,7 @@ const MyWallet: React.FC = () => {
                     signers:[baseAccount]
                   });
                 const account = await program.account.files.fetch(baseAccount.publicKey);
+                alert("Your Transaction is Completed !")
                 console.log("account : ",account);
             }catch(e){
                 console.log(e);

@@ -29,9 +29,10 @@ const FileUploadPage : React.FC<IProps> = ({share}) => {
             const added = await client.add(selectedFile)
             const url = `https://ipfs.infura.io/ipfs/${added.path}`
             updateFileUrl(added.path)
-            console.log(url)
+            console.log({title,description:value,hash:added.path})
             console.log(added.path)
-            share(added.path)
+            
+            share({title,description:value,hash:added.path})
         } catch (error) {
             console.log('Error uploading file: ', error)
         }  
@@ -53,7 +54,7 @@ const FileUploadPage : React.FC<IProps> = ({share}) => {
                         <p>Size in bytes: {selectedFile.size}</p>
                     </div>
                 ) : (
-                    <p>Select file to upload and click submit</p>
+                    <p className="remarks">Select file to upload and click submit</p>
                 )}
             </form>
 

@@ -5,6 +5,8 @@
 # 🔖 About
 Solana File Sharing System is a Decentralized Application which helps you share files to public Anonymously and no one can trace back to you or change the information since all the files and information is store on decentralized network . It can help media personnel , activist , whistleblowers to share important data to public without revealing their identity which can give more power to public and can reveals frauds done by politicians , companies around the world It can become a great tool in a countries which controls media and information receives to public.
 
+### How it Works
+
 ### Website
 [Solana-File-Sharing-Dapp](https://share-files-anonymously.netlify.app/)
 

@@ -38,11 +38,21 @@ Solana File Sharing System is a Decentralized Application which helps you share 
    $ npm start
 ```
 
+## 🏅 Accomplishments that we're proud of
 
-## 📲 Contact
+- Completing the project within the given time frame.
+- Creating a fully functional application.
 
-<a href="https://www.linkedin.com/in/athar-mohammad-34068a157/">Mohd Athar</a> - mohd.rule123@gmail.com
-<br>
+## 📖 What we learned
+
+- How to Connect to IPFS network
+- How to integerate IPFS and Solana 
+
+## 🚀 What's next for Solana File Sharing Dapp
+
+- Making a Searching functionality to fetch files using hash , public address or category
+- Securing all the program and converting to mainnet
+- Making better UI for Writing and uploading data 
 
 
 ## 📌 Credits :

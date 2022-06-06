@@ -24,6 +24,8 @@ const opts = {
   }
 const programID = new PublicKey(idl.metadata.address);
 console.log(programID)
+// const network = "http://localhost:8899/";
+const network = "https://explorer-api.devnet.solana.com/";
 
 const MyWallet: React.FC = () => {
     const wallet = useAnchorWallet();
@@ -33,7 +35,6 @@ const MyWallet: React.FC = () => {
     const { connection } = useConnection();
     const baseAccount = Keypair.generate();
     async function getProvider() {
-        const network = "http://localhost:8899/";
         const connection = new Connection(network, "processed");
 
         const provider = wallet ? new Provider(
@@ -86,7 +87,6 @@ const MyWallet: React.FC = () => {
             if(provider && wallet){
                 const program = new Program(idlJSON, idl.metadata.address, provider);
                 try{
-                    const network = "http://localhost:8899/";
                     const connection = new Connection(network, "processed")
                     const accounts  = await connection.getParsedProgramAccounts(programID)
                     const fetched_data =  await accounts.map(async(val,_)=>{

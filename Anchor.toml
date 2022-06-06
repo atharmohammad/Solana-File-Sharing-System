@@ -3,11 +3,14 @@ seeds = false
 [programs.localnet]
 solana_file_sharing_system = "2sVP5kvLJbSvbNk6abeQjq4VDvd1p3AtMbJvuXVWNsR4"
 
+[programs.devnet]
+solana_file_sharing_system = "2sVP5kvLJbSvbNk6abeQjq4VDvd1p3AtMbJvuXVWNsR4"
+
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
-cluster = "localnet"
+cluster = "devnet"
 wallet = "/home/athar/.config/solana/id.json"
 
 [scripts]

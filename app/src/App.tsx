@@ -46,6 +46,7 @@ function App() {
         <div className="App">
           <header className="App-header">
             <span className="title">Solana File Sharing System</span>
+            <span className="sub-title">Share Files and Data to Public Anonymously</span>
             <MyWallet />
 
           </header>

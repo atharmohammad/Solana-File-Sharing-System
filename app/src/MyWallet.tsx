@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect , useState } from 'react';
 import {
     useAnchorWallet,
     useConnection,
@@ -16,6 +16,7 @@ import {
 import idl from "./idl.json"
 import { Connection, PublicKey } from '@solana/web3.js';
 import FileUploadPage from './FileUpload';
+
 import './page.css'
 const { SystemProgram, Keypair } = web3;
 const opts = {
@@ -27,6 +28,8 @@ console.log(programID)
 const MyWallet: React.FC = () => {
     const wallet = useAnchorWallet();
     const walletAddress = wallet?.publicKey.toString();
+    const [allAccount,setAllAccounts] : [any , any] = useState(null);
+
     const { connection } = useConnection();
     const baseAccount = Keypair.generate();
     async function getProvider() {
@@ -64,7 +67,46 @@ const MyWallet: React.FC = () => {
             }
             
         }
-      }
+    }
+
+    const [rerenderedComponent, setRerenderedComponent] = useState(1);
+
+    const forceUpdate = () => {
+        return setRerenderedComponent(prev => prev + 1);
+    }   
+
+    useEffect(()=>{
+        forceUpdate()
+    },[allAccount])
+
+
+    useEffect(()=>{
+        const get = async()=>{
+            const provider = await getProvider();
+            if(provider && wallet){
+                const program = new Program(idlJSON, idl.metadata.address, provider);
+                try{
+                    const network = "http://localhost:8899/";
+                    const connection = new Connection(network, "processed")
+                    const accounts  = await connection.getParsedProgramAccounts(programID)
+                    const fetched_data =  await accounts.map(async(val,_)=>{
+                        return await program.account.files.fetch(val.pubkey.toString());
+                    })
+                    try{
+                        Promise.all(fetched_data).then((data)=>setAllAccounts(data))
+                    }catch(e){
+                        console.log(e);
+                    }
+                   
+                }catch(e){
+                    console.log(e);
+                }
+                
+            }
+        }
+        get();
+    },[wallet])
+
 
     return (
         <>
@@ -84,6 +126,15 @@ const MyWallet: React.FC = () => {
                 {wallet?.publicKey && <WalletDisconnectButton />}
             </div>
             <FileUploadPage share={share}/>
+            {allAccount && allAccount.length ? allAccount.map((val:any)=>{
+                return (
+                <div className='shared-documents'>
+                    <p>Title : {val.title}</p>
+                    <p>Description : {val.description}</p>
+                    <p>Documents : <a href={`https://ipfs.infura.io/ipfs/${val.docs}`}>Link</a></p>
+                </div>
+                )
+            }) : null}
         </>
     );
 };

@@ -48,7 +48,7 @@ const FileUploadPage : React.FC<IProps> = ({share}) => {
                     onChange={changeHandler} className="choose-file"/>    
                 </label>
                 {isFilePicked ? (
-                    <div>
+                    <div className="remarks">
                         <p>Filename: {selectedFile.name}</p>
                         <p>Filetype: {selectedFile.type}</p>
                         <p>Size in bytes: {selectedFile.size}</p>

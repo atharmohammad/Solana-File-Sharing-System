@@ -77,5 +77,14 @@
 }
 
 .remarks {
-    font-size: 10px;
+    font-size: 12px;
+}
+.shared-documents{
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin:10px 5px 30px 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: 2px solid white
 }

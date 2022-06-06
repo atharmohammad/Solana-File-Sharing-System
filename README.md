@@ -1,4 +1,4 @@
-# Solana-File-Sharing-System
+# Solana File Sharing System
 
 ![main](https://user-images.githubusercontent.com/56029409/172209341-483ddd9a-e0de-4d8a-ada6-f2b94fe3b592.png)
 

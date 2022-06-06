@@ -1,12 +1,15 @@
-import React, {useState} from "react";
-
-const FileUploadPage = () => {
-    const [selectedFile, setSelectedFile] = useState();
+import React, {ChangeEvent, useState} from "react";
+interface HTMLInputEvent extends Event {
+    target: HTMLInputElement & EventTarget;
+}
+const FileUploadPage : React.FC = () => {
+    const [selectedFile, setSelectedFile] = useState<any | null>(null);
     const [isFilePicked, setIsFilePicked] = useState(false);
 
-    const changeHandler = (event) => {
-        console.log(event.target.files[0]);
-        setSelectedFile(event.target.files[0]);
+    const changeHandler = (event?:HTMLInputEvent) => {
+        const files = event?.target.files as FileList;
+        console.log(files[0]);
+        setSelectedFile(files[0]);
         setIsFilePicked(true);
     };
 
@@ -35,8 +38,9 @@ const FileUploadPage = () => {
         <div className="FileUpload">
             <form method="POST" encType="multipart/form-data">
                 
-                <label for="file" className="uploadLabel">
-                    <input type="file" id="file" name="file" onChange={changeHandler} className="uploadButton"/>    
+                <label htmlFor="file" className="uploadLabel">
+                    <input type="file" id="file" name="file" 
+                    onChange={(event?:ChangeEvent<HTMLInputElement>)=>changeHandler} className="uploadButton"/>    
                     Choose a file
 
                 </label>

@@ -28,31 +28,6 @@
   color: #61dafb;
 }
 
-.uploadButton {
-  display: none;
-}
-
-.uploadLabel {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 7px 15px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-
-.FileUpload .submit button {
-  background-color: #04AA6D;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
-  width: 100%;
-}
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

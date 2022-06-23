@@ -10,6 +10,8 @@ Our mission is to truly harness the power of blockchain and the distributed web 
 
 ### How it Works
 Solana File Sharing System primarily relies on IPFS and Solana. The InterPlanetary File System is a protocol and peer-to-peer network for storing and sharing data in a distributed file system. IPFS uses content-addressing to uniquely identify each file in a global namespace connecting all computing devices. What this means is that as long as the file is available on the network, it will be available to anyone in the world. Content can be shared securely, timestamped, and verified at all times will ensuring permanent distribution and availability. Users can link their Solana wallets and access all files uploaded on the site (supported by IPFS) and can also upload files on the network.
+<br>
+#### <a href="https://youtu.be/sbTxXK4uVoM">Click here to watch the video on how it works</a>
 
 ### Website
 [Solana-File-Sharing-Dapp](https://share-files-anonymously.netlify.app/)
